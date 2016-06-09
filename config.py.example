@@ -1,0 +1,13 @@
+"""
+Example configuration file.
+"""
+
+config = {
+    "backend": "ampacheSQL",  # One of the available backends in backends folder
+
+# ampacheSQL parameters, only edit if using it
+    "db_name": "ampache",
+    "db_host": "localhost",
+    "db_user": "root",
+    "db_password": ""
+}
