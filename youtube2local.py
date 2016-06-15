@@ -62,12 +62,24 @@ def match(youtube_url):
     # Parse every song
     songs = []
     for entry in result["entries"]:
-        # Clean the entry title
-        yt_title = title.clean(entry["title"])
+        # Try to fetch metadata from the title
+        metadata = title.split(entry["title"])
+        if metadata is not None:
+            # Try to find a match
+            song_match = backend.check_metadata(metadata, config.config),
+            if match is not None:
+                songs.append({
+                    "match": song_match,
+                    "yt_title": entry["title"],
+                    "url": entry["webpage_url"]
+                })
+                # Go on with next song
+                continue
         # Add the song to the list, with its eventual match
         songs.append({
-            "match": backend.check(yt_title, config.config),
-            "yt_title": yt_title,
+            "match": backend.check_title(title.clean(entry["title"]),
+                                         config.config),
+            "yt_title": entry["title"],
             "url": entry["webpage_url"]
         })
     return songs
